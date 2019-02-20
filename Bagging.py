@@ -34,13 +34,13 @@ print(model.classes_)
 predict_prob[0:5] # inspect  the first 5 predictions
 
 prediction = np.empty(len(X_test), dtype=object)
-prediction = np.where(predict_prob[:,0]>=0.5, 'like', 'unlike')
+prediction = np.where(predict_prob[:,0]>=0.5, 'unlike', 'like')
 print(prediction[0:5])  # Inspect the first 5 predicitons after labeling.
 
 print(pd.crosstab(prediction, Y_test))
 
 Y_new = np.empty(len(X_test), dtype=int)
-Y_new = np.where(Y_test[:]==0, 'like', 'unlike')
+Y_new = np.where(Y_test[:]==0, 'unlike', 'like')
 
 print(np.mean(prediction == Y_new))
 #print(prediction)
