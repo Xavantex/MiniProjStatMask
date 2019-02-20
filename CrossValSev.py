@@ -4,8 +4,10 @@ import matplotlib.pyplot as plt
 
 from sklearn.ensemble import BaggingClassifier, RandomForestClassifier
 import sklearn.discriminant_analysis as skl_da
+import sklearn.linear_model as skl_lm
+import sklearn.neighbors as skl_nb
 
-cross = 5
+cross = 10
 
 plt.style.use('seaborn-white')
 
@@ -22,6 +24,8 @@ models.append(RandomForestClassifier())
 models.append(skl_da.LinearDiscriminantAnalysis())
 models.append(skl_da.QuadraticDiscriminantAnalysis())
 models.append(BaggingClassifier())
+models.append(skl_lm.LogisticRegression())
+models.append(skl_nb.KNeighborsClassifier(n_neighbors=14))
 
 size = len(models)
 print(size)
@@ -44,6 +48,6 @@ for i in range(cross):
 
 plt.boxplot(misclassification)
 plt.title('cross validation error for different methods')
-plt.xticks(np.arange(size)+1, ('RandomForest', 'LDA', 'QDA', 'Bagging'))
+plt.xticks(np.arange(size)+1, ('RandomForest', 'LDA', 'QDA', 'Bagging', 'Log. Reg.', 'K-NN'))
 plt.ylabel('validation error')
 plt.show()

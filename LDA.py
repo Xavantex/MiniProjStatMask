@@ -21,8 +21,12 @@ model = skl_da.LinearDiscriminantAnalysis()
 X_train = train[['acousticness', 'danceability', 'duration', 'energy', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'speechiness', 'tempo', 'time_signature', 'valence']]
 Y_train = train['label']
 
+X_train = pd.get_dummies(train, columns=['key', 'mode', 'time_signature'])
+
 X_test = test[['acousticness', 'danceability', 'duration', 'energy', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'speechiness', 'tempo', 'time_signature', 'valence']]
 Y_test = test['label']
+
+X_test = pd.get_dummies(test, columns=['key', 'mode', 'time_signature'])
 
 model.fit(X_train, Y_train)
 print('model summary:')
